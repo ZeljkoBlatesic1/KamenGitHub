@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<Kamen.Models.TipApl>
+
+<div class="container p-3">
+    
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary" >Lista tipova aplikacije</h2>
+        </div>
+    
+        <div class="col-6 text-right">
+            <a asp-controller="TipApl" asp-action="Create" class="btn btn-outline-primary"><i class="fas fa-plus"></i> &nbsp; Dodati novi tip aplikacije</a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count()>0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thread>
+                <tr>
+                    <th>Naziv aplikacije</th>
+                    <th>Radnje sa podacima</th>
+                </tr>
+            </thread>
+           
+            <tbody> 
+                @foreach(var obj in Model)
+                {
+                <tr>
+                    <td width="50%">@obj.Naziv</td>
+                    <td width="50%" class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="TipApl" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary"><i class="far fa-edit"></i> &nbsp;Urediti</a>
+                            <a asp-controller="TipApl" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger"><i class="far fa-trash-alt"></i> &nbsp;Izbrisati</a>
+                        </div>
+                    </td>
+                </tr>
+                }                
+            </tbody>
+        </table>
+    }
+    else { <p>Nema tipova aplikacije.</p> }
+
+</div>
+
+@*@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>*@
+

@@ -1,0 +1,47 @@
+﻿@model Kamen.Models.ViewModels.HomeVM
+
+<div class="container">
+    <div class="text-center">
+        <button class="btn btn-dark filter-button" data-filter="all">Sve</button>
+        @foreach (var obj in Model.Vrste) 
+        {
+            <button class="btn btn-outline-secondary filter-button" data-filter="@obj.Naziv.Replace(' ','_')">
+                @obj.Naziv
+            </button>
+        }
+    </div>   
+
+    <br/>
+
+    <div class="row">  
+        @foreach(var przd in Model.Proizvodi)
+        {
+            <partial name="_IndKartPrzd" model="przd" />
+            // koristice se partialView za prozivode
+                //da bi se moglo koristiti u svim dijelovima aplikacije
+        }
+    </div>
+</div>
+
+@section Scripts{ 
+    <script>
+    $(document).ready(function(){
+
+    $(".filter-button").click(function(){
+
+        var value = $(this).attr('data-filter');
+        if(value == "all")
+        {
+            $('.filter').show('1000');
+        }
+        else
+        {
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+
+        }
+    });
+
+});
+    </script>
+}

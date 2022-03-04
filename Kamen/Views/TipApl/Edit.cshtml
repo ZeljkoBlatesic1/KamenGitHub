@@ -1,0 +1,74 @@
+﻿@model Kamen.Models.TipApl
+
+<form method="post"> @* post is same name as Edit *@
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Urediti tip aplikacije</h2>
+        </div>
+
+        <div class="row">
+
+            <div class="col-8">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Naziv"></label>
+                    </div>
+
+                    <div class="col-8">
+                        <input asp-for="Naziv" class="form-control" />
+                        <span asp-validation-for="Naziv" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            @*<i class="far fa-edit"></i> &nbsp;*@
+                            <button type="submit" class="btn btn-info w-100">
+                                <i class="far fa-edit"></i> &nbsp;  Izmjeniti
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-primary"><i class="far fa-arrow-alt-circle-left"></i> &nbsp; Nazad</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
+
+@*@{
+        ViewData["Title"] = "Create";
+    }
+
+    <h1>Create</h1>*@
+
+
+
+
+@*POCETNO*@
+
+@*@{
+        ViewData["Title"] = "Edit";
+    }
+
+    <h1>Edit</h1>*@
+

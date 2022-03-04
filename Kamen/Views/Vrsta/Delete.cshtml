@@ -1,0 +1,79 @@
+﻿@model Kamen.Models.Vrsta
+
+<form method="post" asp-action="DeletePost"> @* post is same name as Edit *@
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Obrisati vrstu</h2>
+        </div>
+
+        <div class="row">
+
+            <div class="col-8">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Naziv"></label>
+                    </div>
+
+                    <div class="col-8">
+                        <input asp-for="Naziv" disabled class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="RedPrikaz"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="RedPrikaz" disabled class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-danger w-100" value="Obrisati" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-primary">Nazad</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
+
+@*@{
+        ViewData["Title"] = "Create";
+    }
+
+    <h1>Create</h1>*@
+
+
+
+
+@*POCETNO*@
+
+@*@{
+        ViewData["Title"] = "Edit";
+    }
+
+    <h1>Edit</h1>*@
+

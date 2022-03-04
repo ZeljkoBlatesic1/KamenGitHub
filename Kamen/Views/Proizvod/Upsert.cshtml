@@ -1,0 +1,171 @@
+﻿@model Kamen.Models.ViewModels.ProizvodVM
+
+@{ 
+    var title = "Create Proizvod";
+}
+
+<form method="post" enctype="multipart/form-data"> @* for working with pictures *@
+   
+    @* for create *@
+    @if(Model.Proizvod.Id != 0)
+    {
+        title = "Edit Proizvod";
+        <input asp-for="Proizvod.Id" hidden /> 
+    }
+     
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Kreirati proizvod</h2>
+        </div>
+
+        <div class="row">
+
+            <div class="col-8">
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.Naziv"></label>
+                    </div>
+
+                    <div class="col-8">
+                        <input asp-for="Proizvod.Naziv" class="form-control" />
+                        <span asp-validation-for="Proizvod.Naziv" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.Cijena"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Proizvod.Cijena" class="form-control" />
+                        <span asp-validation-for="Proizvod.Cijena" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.KratOpis"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Proizvod.KratOpis" class="form-control" />
+                        <span asp-validation-for="Proizvod.KratOpis" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.Opis"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Proizvod.Opis" class="form-control summernote"> </textarea>
+                        <span asp-validation-for="Proizvod.Opis" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.Slika"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                    </div>
+                </div>
+
+
+                @*DROPDOWN section*@
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.VrstaId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Proizvod.VrstaId" asp-items="@Model.VrstaSelectList" class="form-control">
+                            <option disabled selected>--Izabrati vrstu--</option>
+                        </select>
+                        <span asp-validation-for="Proizvod.VrstaId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Proizvod.TipAplId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Proizvod.TipAplId" asp-items="@Model.TipAplSelectList" class="form-control">
+                            <option disabled selected>--Izabrati tip aplikacije--</option>
+                        </select>
+                        <span asp-validation-for="Proizvod.TipAplId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+                        <div class="col">
+                            @if (Model.Proizvod.Id != 0) // UPDATE works
+                            {
+                                //update ; used BUTTON not INPUT !!!!!!!!!!!!!!
+                                <button type="submit" class="btn btn-info w-100">
+                                    <i class="far fa-edit"></i> &nbsp;  Izmjeniti
+                                </button>
+                            }
+                            else
+                            {
+                                //create; used BUTTON not INPUT !!!!!!!!!!!!!!
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary w-100">
+                                    <i class="far fa-edit"></i> &nbsp;  Kreirati
+                                </button>
+                            }
+                        </div>
+
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success"><i class="far fa-arrow-alt-circle-left"></i> &nbsp; Nazad</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4 p-4">
+                @* Keep this empty *@
+                <img src="@WC.ImagePath@Model.Proizvod.Slika" width="100%" style="border-radius:5px; border:1px solid  #bbb;">
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    
+@* Section for TEXT TOOLBAR *@
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 250
+            });
+        });
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire(
+                    'Problem!',
+                    'Molimo postavite sliku.',
+                    'error'
+                )
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+}
+
+
+@*@{
+        ViewData["Title"] = "Upsert";
+    }
+
+    <h1>Upsert</h1>*@
+
